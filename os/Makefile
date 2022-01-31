@@ -7,6 +7,7 @@ SRCS_ASM = \
 # c 源文件
 SRCS_C = \
 	kernel.c \
+	uart.c \
 
 # 目标文件
 OBJS = $(SRCS_ASM:.S=.o)
