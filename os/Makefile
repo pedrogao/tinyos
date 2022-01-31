@@ -3,11 +3,14 @@ include ../common.mk
 # 汇编源文件
 SRCS_ASM = \
 	start.S \
+	mem.S \
 
 # c 源文件
 SRCS_C = \
 	kernel.c \
 	uart.c \
+	printf.c \
+	page.c \
 
 # 目标文件
 OBJS = $(SRCS_ASM:.S=.o)
@@ -20,7 +23,7 @@ all: os.elf
 # start.o must be the first in dependency!
 # os.elf 依赖于 OBJS
 os.elf: ${OBJS}
-	${CC} ${CFLAGS} -Ttext=0x80000000 -o os.elf $^
+	${CC} ${CFLAGS} -T os.ld -o os.elf $^
 	${OBJCOPY} -O binary os.elf os.bin
 
 # 编译c文件
