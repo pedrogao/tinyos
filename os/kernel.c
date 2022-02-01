@@ -12,6 +12,7 @@ extern void schedule(void);
 extern void os_main(void);
 extern void trap_init(void);
 extern void plic_init(void);
+extern void timer_init(void);
 
 void start_kernel(void)
 {
@@ -21,13 +22,14 @@ void start_kernel(void)
     page_init();  // 内存初始化
     trap_init();  // trap初始化
     plic_init();  // 外部中断初始化
+    timer_init(); // 时种中断初始化
     sched_init(); // 调度初始化
 
     os_main(); // 创建任务
 
     schedule(); // 调度
 
-    uart_puts("would not go here!\n");
+    uart_puts("Would not go here!\n");
 
     // 死循环，进入内核后啥也不干
     while (1)

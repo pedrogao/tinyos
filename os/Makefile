@@ -16,6 +16,7 @@ SRCS_C = \
 	user.c \
 	trap.c \
 	plic.c \
+	timer.c \
 
 # 目标文件
 OBJS = $(SRCS_ASM:.S=.o)

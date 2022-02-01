@@ -92,9 +92,9 @@ static inline void w_mtvec(reg_t x)
 }
 
 /* Machine-mode Interrupt Enable */
-#define MIE_MEIE (1 << 11) // external
-#define MIE_MTIE (1 << 7)  // timer
-#define MIE_MSIE (1 << 3)  // software
+#define MIE_MEIE (1 << 11) // external interrupt
+#define MIE_MTIE (1 << 7)  // timer interrupt
+#define MIE_MSIE (1 << 3)  // software interrupt
 
 /* read mie */
 static inline reg_t r_mie()
