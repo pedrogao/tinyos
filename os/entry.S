@@ -104,6 +104,7 @@ trap_vector:
 	# call the C trap handler in trap.c
 	csrr	a0, mepc        # 参数1
 	csrr	a1, mcause      # 参数2
+	csrr	a2, mscratch    # 参数3
 	call	trap_handler    # call
 
 	# trap_handler will return the return address via a0.

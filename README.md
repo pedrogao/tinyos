@@ -17,6 +17,7 @@ cd os && make run
 - 上下文切换
 - 外部中断(输入、输出)
 - 时钟中断
+- 系统调用
 
 ## TODO
 
@@ -27,3 +28,4 @@ cd os && make run
 ## 参考资料
 
 - https://ica123.com/archives/6318
+- https://github.com/plctlab/riscv-operating-system-mooc

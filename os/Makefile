@@ -1,5 +1,11 @@
 include ../common.mk
 
+SYSCALL = y
+
+ifeq (${SYSCALL}, y)
+CFLAGS += -D CONFIG_SYSCALL
+endif
+
 # 汇编源文件
 SRCS_ASM = \
 	start.S \
@@ -18,6 +24,7 @@ SRCS_C = \
 	plic.c \
 	timer.c \
 	lock.c \
+	syscall.c \
 
 # 目标文件
 OBJS = $(SRCS_ASM:.S=.o)
