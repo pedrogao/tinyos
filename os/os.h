@@ -11,6 +11,7 @@
 /* uart */
 extern void uart_init(void);
 extern void uart_puts(char *s);
+extern int uart_getc(void);
 
 /* printf */
 extern int printf(const char *s, ...);

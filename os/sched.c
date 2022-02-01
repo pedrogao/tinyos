@@ -15,6 +15,9 @@ static int _current = -1;
 void sched_init()
 {
     w_mscratch(0); // 清零 mscratch
+
+    /* enable machine-mode software interrupts. */
+    w_mie(r_mie() | MIE_MSIE);
 }
 
 void schedule()
@@ -53,7 +56,10 @@ int task_create(void (*start_func)(void))
  */
 void task_yield()
 {
-    schedule(); // call schedule
+    // schedule();
+    // call schedule
+    int id = r_mhartid();
+    *(uint32_t *)CLINT_MSIP(id) = 1; // 触发软件中断
 }
 
 /*

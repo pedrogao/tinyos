@@ -22,6 +22,17 @@ _start:
     slli t0, t0, 10             # sheft left，把 t0 左移10位，得到当前hart栈所在的位置偏移
     la sp, stacks + STACK_SIZE  # 设置 sp 寄存器为栈底，高位内存，栈从上往下
     add sp, sp, t0              # sp = sp + t0，将 sp 移动到当前 hart 栈的栈底，所以 tp 保存至关重要
+    
+    # At the end of start_kernel, schedule() will call MRET to switch
+	# to the first task, so we parepare the mstatus here.
+	# Notice: default mstatus is 0
+	# Set mstatus.MPP to 3, so we still run in Machine mode after MRET.
+	# Set mstatus.MPIE to 1, so MRET will enable the interrupt.
+	li	t0, 3 << 11 | 1 << 7
+	csrr	a1, mstatus
+	or	t0, t0, a1
+	csrw	mstatus, t0
+    
     j  start_kernel             # 注意：只有 hart0 跳转
 
 park:

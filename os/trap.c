@@ -3,6 +3,7 @@
 extern void trap_vector(void);
 extern void uart_isr(void);
 extern void timer_handler(void);
+extern void schedule(void);
 
 void trap_init()
 {
@@ -41,6 +42,14 @@ reg_t trap_handler(reg_t epc, reg_t cause)
         {
         case 3:
             uart_puts("software interruption!\n");
+            /*
+			 * acknowledge the software interrupt by clearing
+    	     * the MSIP bit in mip.
+			 */
+            int id = r_mhartid();
+            *(uint32_t *)CLINT_MSIP(id) = 0;
+
+            schedule();
             break;
         case 7:
             uart_puts("timer interruption!\n");

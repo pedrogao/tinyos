@@ -9,6 +9,13 @@
 cd os && make run
 ```
 
+## feature
+
+- 多进程
+- 上下文切换
+- 外部中断(输入、输出)
+- 时钟中断
+
 ## TODO
 
 - 无 bootloader
