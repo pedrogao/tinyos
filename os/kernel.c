@@ -10,13 +10,15 @@ extern void page_init(void);
 extern void sched_init(void);
 extern void schedule(void);
 extern void os_main(void);
+extern void trap_init(void);
 
 void start_kernel(void)
 {
     uart_init(); // 输出设备初始化
     uart_puts("Hello tinyos!\n");
 
-    page_init();  // 内存初始化
+    page_init(); // 内存初始化
+    trap_init(); // trap初始化
     sched_init(); // 调度初始化
 
     os_main(); // 创建任务

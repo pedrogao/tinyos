@@ -12,12 +12,6 @@ struct context ctx_tasks[MAX_TASKS];       // 所有进程上下文
 static int _top = 0;
 static int _current = -1;
 
-/* write mscratch */
-static void w_mscratch(reg_t x)
-{
-    asm volatile("csrw mscratch, %0" ::"r"(x));
-}
-
 void sched_init()
 {
     w_mscratch(0); // 清零 mscratch

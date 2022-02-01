@@ -14,6 +14,7 @@ SRCS_C = \
 	page.c \
 	sched.c \
 	user.c \
+	trap.c \
 
 # 目标文件
 OBJS = $(SRCS_ASM:.S=.o)
