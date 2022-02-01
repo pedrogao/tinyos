@@ -73,10 +73,10 @@
  */
 void uart_init()
 {
-    /* 1. disable interrupts. */
-    uart_write_reg(IER, 0x00);
+	/* 1. disable interrupts. */
+	uart_write_reg(IER, 0x00);
 
-    /*
+	/*
 	 * 2. Setting baud rate. Just a demo here if we care about the divisor,
 	 * but for our purpose [QEMU-virt], this doesn't really do anything.
 	 *
@@ -92,12 +92,12 @@ void uart_init()
 	 * split the value of 3(0x0003) into two bytes, DLL stores the low byte,
 	 * DLM stores the high byte.
 	 */
-    uint8_t lcr = uart_read_reg(LCR);
-    uart_write_reg(LCR, lcr | (1 << 7));
-    uart_write_reg(DLL, 0x03);
-    uart_write_reg(DLM, 0x00);
+	uint8_t lcr = uart_read_reg(LCR);
+	uart_write_reg(LCR, lcr | (1 << 7));
+	uart_write_reg(DLL, 0x03);
+	uart_write_reg(DLM, 0x00);
 
-    /*
+	/*
 	 * 3. Continue setting the asynchronous data communication format.
 	 * - number of the word length: 8 bits
 	 * - number of stop bits：1 bit when word length is 8 bits
@@ -105,8 +105,8 @@ void uart_init()
 	 * - no break control
 	 * - disabled baud latch
 	 */
-    lcr = 0;
-    uart_write_reg(LCR, lcr | (3 << 0));
+	lcr = 0;
+	uart_write_reg(LCR, lcr | (3 << 0));
 }
 
 /*
@@ -114,11 +114,11 @@ void uart_init()
  */
 int uart_putc(char ch)
 {
-    // 如果LSR状态为等到
-    while ((uart_read_reg(LSR) & LSR_TX_IDLE) == 0)
-        ;
-    // 写 ch，注意寄存器的大小就是 uint8=char
-    return uart_write_reg(THR, ch);
+	// 如果LSR状态为等到
+	while ((uart_read_reg(LSR) & LSR_TX_IDLE) == 0)
+		;
+	// 写 ch，注意寄存器的大小就是 uint8=char
+	return uart_write_reg(THR, ch);
 }
 
 /*
@@ -126,9 +126,42 @@ int uart_putc(char ch)
  */
 void uart_puts(char *s)
 {
-    while (*s)
-    {
-        // 先 *s ，后 s++
-        uart_putc(*s++);
-    }
+	while (*s)
+	{
+		// 先 *s ，后 s++
+		uart_putc(*s++);
+	}
+}
+
+/* 获取字符 */
+int uart_getc(void)
+{
+	if (uart_read_reg(LSR) & LSR_RX_READY)
+	{
+		return uart_read_reg(RHR);
+	}
+	else
+	{
+		return -1;
+	}
+}
+
+/*
+ * handle a uart interrupt, raised because input has arrived, called from trap.c.
+ */
+void uart_isr(void)
+{
+	while (1)
+	{
+		int c = uart_getc();
+		if (c == -1)
+		{
+			break;
+		}
+		else
+		{
+			uart_putc((char)c);
+			uart_putc('\n');
+		}
+	}
 }
