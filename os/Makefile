@@ -4,6 +4,7 @@ include ../common.mk
 SRCS_ASM = \
 	start.S \
 	mem.S \
+	entry.S \
 
 # c 源文件
 SRCS_C = \
@@ -11,6 +12,7 @@ SRCS_C = \
 	uart.c \
 	printf.c \
 	page.c \
+	sched.c \
 
 # 目标文件
 OBJS = $(SRCS_ASM:.S=.o)

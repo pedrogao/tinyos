@@ -7,15 +7,22 @@
  */
 extern void uart_init(void);
 extern void page_init(void);
+extern void sched_init(void);
+extern void schedule(void);
 
 void start_kernel(void)
 {
-    uart_init();
+    uart_init(); // 输出设备初始化
     uart_puts("Hello tinyos!\n");
 
-    page_init();
+    page_init();  // 内存初始化
+    sched_init(); // 调度初始化
 
+    schedule(); // 调度
+
+    uart_puts("would not go here!\n");
+
+    // 死循环，进入内核后啥也不干
     while (1)
-    {
-    }; // 死循环，进入内核后啥也不干
+        ;
 }

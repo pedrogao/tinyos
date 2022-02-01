@@ -12,11 +12,11 @@ _start:
     # 将 bss 段全部数据设置为0，清除debug信息
     la a0, _bss_start
     la a1, _bss_end
-    bgeu a0, a1, 2f            # 如果 a0==a1，则跳到2，否则进入1
+    bgeu a0, a1, 2f            # 如果 a0 >= a1，则 pc 跳到 2;
 1:
-    sw zero, (a0)              # 设置a0=0
+    sw zero, (a0)              # store word, 32 字节，设置a0=0
     addi a0, a0, 4             # a0++
-    bltu a0, a1, 1b            # 比较 a0!=a1，跳转到1
+    bltu a0, a1, 1b            # 比较 a0 < a1，pc 跳转到 1
 2:
     # 如果 hart id 是 0，则按照下面的代码执行
     slli t0, t0, 10             # sheft left，把 t0 左移10位，得到当前hart栈所在的位置偏移

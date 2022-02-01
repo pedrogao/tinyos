@@ -15,3 +15,5 @@ cd os && make run
 - 无虚拟内存
 
 ## 参考资料
+
+- https://ica123.com/archives/6318
