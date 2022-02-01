@@ -23,8 +23,8 @@ extern void page_free(void *p);
 struct context
 {
     /* ignore x0 */
-    reg_t ra;  // return address
-    reg_t sp;  // stack pointer
+    reg_t ra; // return address
+    reg_t sp; // stack pointer
     reg_t gp;
     reg_t tp;
     reg_t t0;
@@ -58,5 +58,6 @@ struct context
 
 extern int task_create(void (*task)(void));
 extern void task_delay(volatile int count);
+extern void task_yield();
 
 #endif /* __OS_H__ */

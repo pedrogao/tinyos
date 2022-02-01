@@ -13,6 +13,7 @@ cd os && make run
 
 - 无 bootloader
 - 无虚拟内存
+- 无用户态
 
 ## 参考资料
 
