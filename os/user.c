@@ -2,16 +2,27 @@
 
 #define DELAY 1000
 
+#define USE_LOCK
+
 /* 0号进程任务 */
 void user_task0(void)
 {
     uart_puts("Task 0: Created!\n");
-    task_yield(); // 协作式
-    uart_puts("Task 0: I'am back!\n");
     while (1)
     {
-        uart_puts("Task 0: Running...\n");
-        task_delay(DELAY);
+#ifdef USE_LOCK
+        spin_lock();
+#endif
+        uart_puts("Task 0: Begin...\n");
+        for (int i = 0; i < 5; i++)
+        {
+            uart_puts("Task 0: Running...\n");
+            task_delay(DELAY);
+        }
+        uart_puts("Task 0: End...\n");
+#ifdef USE_LOCK
+        spin_unlock();
+#endif
     }
 }
 
