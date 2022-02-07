@@ -29,3 +29,5 @@ cd os && make run
 
 - https://ica123.com/archives/6318
 - https://github.com/plctlab/riscv-operating-system-mooc
+- https://notes.eatonphil.com/bootloader-basics.html
+- https://0x00sec.org/t/realmode-assembly-writing-bootable-stuff-part-5/3667
