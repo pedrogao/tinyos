@@ -4,9 +4,9 @@
 _start:
 	li x5, 0
 	li x6, 5
-2:
+loop:
 	addi x5, x5, 1
-	bgeu x6, x5, 2b     # if x6 >= x5, pc = 2b
+	bgeu x6, x5, loop     # if x6 >= x5, jmp loop
 
 stop:
 	j stop			    # Infinite loop to stop execution
