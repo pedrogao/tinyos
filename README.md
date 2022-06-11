@@ -25,6 +25,15 @@ cd os && make run
 - 无虚拟内存
 - 无用户态
 
+## 代码结构
+
+- [riscv 汇编入门](./asm/)
+- [bootloader x86](./bootloader/)
+- [riscv 文档](./docs/)
+- [riscv os](./riscvos/)
+  -- [riscv setup](./riscvos/1-setup/)
+  -- [riscv final](./riscvos/final/)
+
 ## 参考资料
 
 - https://ica123.com/archives/6318

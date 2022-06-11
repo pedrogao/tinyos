@@ -1,4 +1,4 @@
-EXEC = asm
+EXEC = $(M)
 
 SRC = ${EXEC}.s
 
