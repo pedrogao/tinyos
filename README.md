@@ -1,7 +1,7 @@
 # tinyos
 
 > 基于 risc-v 平台的简单操作系统，旨在学习 risc-v 和实践
-> 操作系统的设计与实现
+> 32 位操作系统的设计与实现
 
 ## 运行
 
@@ -32,6 +32,7 @@ cd os && make run
 - [riscv 文档](./docs/)
 - [riscv os](./riscvos/)
   -- [riscv setup](./riscvos/1-setup/)
+  -- [riscv console](./riscvos/2-console/)
   -- [riscv final](./riscvos/final/)
 
 ## 参考资料
