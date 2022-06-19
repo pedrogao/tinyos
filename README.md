@@ -33,6 +33,14 @@ cd os && make run
 - [riscv os](./riscvos/)
   -- [riscv setup](./riscvos/1-setup/)
   -- [riscv console](./riscvos/2-console/)
+  -- [riscv memory manage](./riscvos/3-memory-manage/)
+  -- [riscv multi task](./riscvos/4-multi-task/)
+  -- [riscv trap](./riscvos/5-trap/)
+  -- [riscv interrupt](./riscvos/6-interrupt/)
+  -- [riscv hard-wire timer](./riscvos/7-hard-wire-timer/)
+  -- [riscv preemptive task](./riscvos/8-preemptive/)
+  -- [riscv lock](./riscvos/9-lock/)
+  -- [riscv syscall](./riscvos/10-syscall/)
   -- [riscv final](./riscvos/final/)
 
 ## 参考资料
